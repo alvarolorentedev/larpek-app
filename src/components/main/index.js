@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { StyleSheet, View, Text } from 'react-native'
+import { StyleSheet, View, Text, Image } from 'react-native'
 
 import { Container, Fab, Icon, Button } from 'native-base'
 
@@ -13,29 +13,14 @@ export default class Main extends Component {
 
     render() {
         return (
-            <Container> 
+            <Container style={{ backgroundColor: 'white' }}> 
                 {header("Larpek")}
-                <View style={styles.container}>
-                    <Text style={styles.welcome}>
-                    Welcome to Larpek!
-                    </Text>
+                <View>
+                <Image  style={{ width:370, resizeMode: 'center', marginTop: 20, marginBottom: 20, backgroundColor: 'transparent' }} 
+                        source={require('../resources/logo.jpg')} />
                 </View>
-                <Menu {...this.props} />
+                <Menu/>
             </Container>
         )
     }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  }
-})
