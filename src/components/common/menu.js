@@ -19,10 +19,10 @@ class Menu extends Component {
                 onPress={() =>this.props.updateUI('active', !this.props.ui.active)}>
                 <Icon name="md-more" />
                 <Button>
-                    <Icon name="md-infinite" onPress={ () =>{
-                        console.log("do something else")
-                        Actions.refresh()
-                        }} />
+                    <Icon name="md-home" onPress={ () =>{ Actions.main() }} />
+                </Button>
+                <Button>
+                    <Icon name="md-infinite" onPress={ () =>{ Actions.inventory() }} />
                 </Button>
           </Fab>
         )

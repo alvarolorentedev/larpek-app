@@ -7,13 +7,15 @@ import { ActionCreators } from '../actions'
 import { Actions, Router, Scene } from 'react-native-router-flux'
 
 import main from './main'
+import inventory from './inventory'
 
 const RouterWithRedux = connect()(Router)
 
 const scenes = Actions.create(
     <Scene key="root" hideNavBar={true} tabs={false} >
-        <Scene key="tabbar" tabs={false} hideNavBar={true} initial>
+        <Scene key="tabbar" tabs={false} hideNavBar={true}>
             <Scene key='main' component={main} title="Main" initial/>
+            <Scene key='inventory' component={inventory} title="Inventory"/>
         </Scene>
      </Scene>
      
