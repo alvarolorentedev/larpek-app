@@ -1,1 +1,3 @@
-export const ActionCreators = Object.assign({})
+import * as inventory from "./inventory"
+
+export const ActionCreators = Object.assign({},inventory)
