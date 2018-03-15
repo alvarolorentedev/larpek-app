@@ -17,6 +17,9 @@ export default class Inventory extends Component {
                 {header("Larpek")}
                 <View>
                 <Text> This is the inventory </Text>
+                <Button onPress={() => {
+                     this.props.addToInventory()
+                }}><Text>Add</Text></Button>
                 </View>
                 <Menu/>
             </Container>
