@@ -26,6 +26,7 @@
     "babel-jest": "22.4.1",
     "babel-preset-react-native": "4.0.0",
     "jest": "22.4.2",
+    "jest-immutable-matchers": "2.0.1",
     "react-native-debugger-open": "0.3.17",
     "react-test-renderer": "16.2.0",
     "redux-devtools-extension": "2.13.2",
