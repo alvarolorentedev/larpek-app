@@ -12,6 +12,7 @@
   "dependencies": {
     "immutable": "3.8.2",
     "native-base": "2.3.9",
+    "prop-types": "15.6.1",
     "react": "16.2.0",
     "react-native": "0.53.3",
     "react-native-router-flux": "4.0.0-beta.28",
@@ -23,11 +24,15 @@
     "redux-ui": "0.1.1"
   },
   "devDependencies": {
-    "babel-jest": "22.4.1",
     "babel-preset-react-native": "4.0.0",
+    "enzyme": "3.3.0",
+    "enzyme-adapter-react-16": "1.1.1",
     "jest": "22.4.2",
+    "jest-environment-enzyme": "6.0.0",
+    "jest-enzyme": "6.0.0",
     "jest-immutable-matchers": "2.0.1",
     "react-native-debugger-open": "0.3.17",
+    "react-native-mock": "0.3.1",
     "react-test-renderer": "16.2.0",
     "redux-devtools-extension": "2.13.2",
     "redux-mock-store": "1.5.1"
@@ -35,8 +40,12 @@
   "jest": {
     "preset": "react-native",
     "automock": false,
+    "setupTestFrameworkScriptFile": "./test/setup.js",
     "testMatch": [
       "**/test/**/*-test.js"
+    ],
+    "transformIgnorePatterns": [
+      "node_modules/(?!react-native|native-base|react-navigation)"
     ]
   }
 }
