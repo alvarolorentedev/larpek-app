@@ -9,14 +9,14 @@ import Menu from '../common/menu'
 import header from '../common/header'
 
 export class Inventory extends Component {
+    static propTypes = {
+        Inventory: PropTypes.array.isRequired,
+        addToInventory : PropTypes.func.isRequired
+    }
+
     constructor(props){
         super(props)
     }
-
-    propTypes = {
-        Inventory: PropTypes.array.isRequired,
-        addToInventory : PropTypes.func.isRequired
-      };
 
     render() {
         return (
@@ -25,7 +25,7 @@ export class Inventory extends Component {
                 <View>
                 <List id='inventoryList'>
                 {
-                    this.props.Inventory.map(element => <ListItem key><Text>element</Text></ListItem>)
+                    this.props.Inventory.map((element, index) => <ListItem key={"element_"+index}><Text>element</Text></ListItem>)
                 }
                 </List>
                 <Button id='addButton' onPress={() => {
@@ -38,10 +38,10 @@ export class Inventory extends Component {
     }
 }
 
-function mapStateToProps(state){
+export function _mapStateToProps(state){
     return {
-        Inventory: [{}]
+        Inventory: state.inventory.content.toJS()
     }
 }
 
-export default connect(mapStateToProps)(Inventory);
+export default connect(_mapStateToProps)(Inventory);

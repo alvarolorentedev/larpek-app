@@ -1,14 +1,15 @@
 import Enzyme, { shallow } from 'enzyme'
 import React from 'react'
-import {Inventory} from '../../../../src/components/inventory'
+import {Inventory, _mapStateToProps} from '../../../../src/components/inventory'
 
 import { View, Text } from 'react-native'
 import { Container, Fab, Icon, Button } from 'native-base'
+import { List } from 'immutable'
 
 describe('inventory', () => {
 
     beforeEach(() => {
-        wrapper = shallow(<Inventory Inventory={[{}]}/>);
+        wrapper = shallow(<Inventory Inventory={[{}]} addToInventory ={() => { expect(true).toBeFalsy() }}/>);
       })
     describe('add button', () => {
 
@@ -51,6 +52,14 @@ describe('inventory', () => {
               });
         })
     })
+
+    describe('mapped props', () => {
+        test('should have inventory', () => {
+            let expectedValue = List()
+            let state = { inventory : { content : expectedValue } }
+            expect(_mapStateToProps(state).Inventory).toEqual(expectedValue.toJS())
+        });
+    });
 })
 
 
