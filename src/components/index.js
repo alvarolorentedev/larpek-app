@@ -14,8 +14,8 @@ class AppContainer extends Component {
             return <Router {...this.props}>
                         <Scene key="root" hideNavBar={true} tabs={false} >
                             <Scene key="tabbar" tabs={false} hideNavBar={true}>
-                                <Scene key='main' component={main} title="Main" />
-                                <Scene key='inventory' component={inventory} title="Inventory" initial/>
+                                <Scene key='main' component={main} title="Main" initial />
+                                <Scene key='inventory' component={inventory} title="Inventory" />
                             </Scene>
                         </Scene>
                     </Router>

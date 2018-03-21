@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { View, Text } from 'react-native'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import {v1} from 'uuid'
+import {v1 as uuid } from 'uuid'
 
 import { Container, Fab, Icon, Button, List, ListItem } from 'native-base'
 
@@ -30,7 +30,7 @@ export class Inventory extends Component {
                 }
                 </List>
                 <Button id='addButton' onPress={() => {
-                     this.props.addToInventory({id : v1()})
+                     this.props.addToInventory({id : uuid()})
                 }}><Text>Add</Text></Button>
                 </View>
                 <Menu/>
