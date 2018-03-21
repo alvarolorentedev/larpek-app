@@ -33,6 +33,19 @@ describe('inventory', () => {
             addButtonChild.simulate('press')
             expect(addToInventoryMock.mock.calls.length).toEqual(1)
         })
+
+
+        it('calls addInventory generate random id', () => {
+            let addToInventoryMock = jest.fn()
+            wrapper.setProps({addToInventory: addToInventoryMock})
+            let addButtonChild = wrapper.find('#addButton')
+            addButtonChild.simulate('press')
+            addButtonChild.simulate('press')
+            let firstCall = addToInventoryMock.mock.calls[0][0]
+            let secondCall = addToInventoryMock.mock.calls[1][0]
+            expect(typeof firstCall.id).toBe('string')
+            expect("firstCall.id").not.toEqual("secondCall.id")
+        })
     })
 
     describe('render List', () => {
@@ -43,13 +56,23 @@ describe('inventory', () => {
         })
 
         it('has rendered items', () => {
-            inventoryList = [{}, {}]
+            inventoryList = [{id: Math.random()}, {id: Math.random()}]
             wrapper.setProps({Inventory: inventoryList })
             let inventoryListChildren = wrapper.find('#inventoryList').children()
             expect(inventoryListChildren.length).toEqual(2)
             inventoryListChildren.forEach((node) => {
                 expect(node.name()).toEqual('Styled(ListItem)');
               });
+        })
+
+        it('rendered items have correct content', () => {
+            
+            inventoryList = [{id: Math.random()}, {id: Math.random()}]
+            wrapper.setProps({Inventory: inventoryList })
+            let inventoryItem = wrapper.find('#inventoryList').childAt(0)
+            let inventoryItemText = inventoryItem.childAt(0)
+            expect(inventoryItemText.name()).toEqual("Text")
+            expect(inventoryItemText.children().text()).toEqual(JSON.stringify(inventoryList[0]))
         })
     })
 

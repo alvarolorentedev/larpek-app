@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { View, Text } from 'react-native'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
+import {v1} from 'uuid'
 
 import { Container, Fab, Icon, Button, List, ListItem } from 'native-base'
 
@@ -25,11 +26,11 @@ export class Inventory extends Component {
                 <View>
                 <List id='inventoryList'>
                 {
-                    this.props.Inventory.map((element, index) => <ListItem key={"element_"+index}><Text>element</Text></ListItem>)
+                    this.props.Inventory.map((element, index) => <ListItem key={"element_"+index}><Text>{JSON.stringify(element)}</Text></ListItem>)
                 }
                 </List>
                 <Button id='addButton' onPress={() => {
-                     this.props.addToInventory()
+                     this.props.addToInventory({id : v1()})
                 }}><Text>Add</Text></Button>
                 </View>
                 <Menu/>
