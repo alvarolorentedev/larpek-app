@@ -1,10 +1,9 @@
 import React, { Component } from 'react'
-import { View, Text } from 'react-native'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import {v1 as uuid } from 'uuid'
 
-import { Container, Fab, Icon, Button, List, ListItem } from 'native-base'
+import { View, Container, Fab, Icon, Button, List, ListItem, Text, Body, Right } from 'native-base'
 
 import Menu from '../common/menu'
 import header from '../common/header'
@@ -12,7 +11,8 @@ import header from '../common/header'
 export class Inventory extends Component {
     static propTypes = {
         Inventory: PropTypes.array.isRequired,
-        addToInventory : PropTypes.func.isRequired
+        addToInventory : PropTypes.func.isRequired,
+        useFromInventory : PropTypes.func.isRequired
     }
 
     constructor(props){
@@ -26,7 +26,12 @@ export class Inventory extends Component {
                 <View>
                 <List id='inventoryList'>
                 {
-                    this.props.Inventory.map((element, index) => <ListItem key={"element_"+index}><Text>{JSON.stringify(element)}</Text></ListItem>)
+                    this.props.Inventory.map((element, index) => 
+                    <ListItem key={"element_"+index} className="InventoryItem">
+                        <Body><Text>{JSON.stringify(element)}</Text></Body>
+                        <Right><Button className="InventoryItemButton" onPress={() => {
+                     this.props.useFromInventory(element.id)}}><Text>Use</Text></Button></Right>
+                  </ListItem>)
                 }
                 </List>
                 <Button id='addButton' onPress={() => {

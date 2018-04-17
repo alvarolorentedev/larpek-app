@@ -9,7 +9,7 @@ import { List } from 'immutable'
 describe('inventory', () => {
 
     beforeEach(() => {
-        wrapper = shallow(<Inventory Inventory={[{}]} addToInventory ={() => { expect(true).toBeFalsy() }}/>);
+        wrapper = shallow(<Inventory Inventory={[{}]} addToInventory ={() => { expect(true).toBeFalsy() }} useFromInventory ={ () => { expect(true).toBeFalsy() } }/>);
       })
     describe('add button', () => {
 
@@ -22,7 +22,7 @@ describe('inventory', () => {
         it('has text Add', () => {
             let addButtonChild = wrapper.find('#addButton').children()
             expect(addButtonChild.length).toEqual(1)
-            expect(addButtonChild.name()).toEqual('Text')
+            expect(addButtonChild.name()).toEqual('Styled(Text)')
             expect(addButtonChild.children().text()).toEqual('Add')
         })
 
@@ -65,14 +65,35 @@ describe('inventory', () => {
               });
         })
 
-        it('rendered items have correct content', () => {
+        it('rendered items have correct content text', () => {
             
             inventoryList = [{id: Math.random()}, {id: Math.random()}]
             wrapper.setProps({Inventory: inventoryList })
             let inventoryItem = wrapper.find('#inventoryList').childAt(0)
-            let inventoryItemText = inventoryItem.childAt(0)
-            expect(inventoryItemText.name()).toEqual("Text")
+            let inventoryItemText = inventoryItem.childAt(0).childAt(0)
+            expect(inventoryItemText.name()).toEqual("Styled(Text)")
             expect(inventoryItemText.children().text()).toEqual(JSON.stringify(inventoryList[0]))
+        })
+
+        it('rendered items have correct content button', () => {
+            
+            inventoryList = [{id: Math.random()}, {id: Math.random()}]
+            wrapper.setProps({Inventory: inventoryList })
+            let inventoryItem = wrapper.find('#inventoryList').childAt(0)
+            let inventoryItemButton = inventoryItem.childAt(1).childAt(0)
+            expect(inventoryItemButton.name()).toEqual('Styled(Button)')
+            expect(inventoryItemButton.childAt(0).children().text()).toEqual("Use")
+        })
+
+        it('calls useFromInventory from props', () => {
+            let idValue = Math.random()
+            inventoryList = [{id: idValue}]
+            let useFormInventoryMock = jest.fn()
+            wrapper.setProps({Inventory: inventoryList , useFromInventory: useFormInventoryMock})
+            let useButtonChild = wrapper.find('.InventoryItemButton')
+            useButtonChild.simulate('press')
+            expect(useFormInventoryMock.mock.calls.length).toEqual(1)
+            expect(useFormInventoryMock.mock.calls[0][0]).toEqual(idValue)
         })
     })
 
