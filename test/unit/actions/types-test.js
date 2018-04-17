@@ -1,5 +1,12 @@
-import { ADD_TO_INVENTORY } from '../../../src/actions/types'
+import * as types from '../../../src/actions/types'
 
-it('types has ADD_TO_INVENTORY as a string with same', () => {
-    expect(ADD_TO_INVENTORY).toBe("ADD_TO_INVENTORY")
+[
+    "ADD_TO_INVENTORY",
+    "USE_FROM_INVENTORY"
+]
+.forEach((value) => {
+    it('types has $value as a string with same text', () => {
+        expect(types[value]).toBe(value)
+    })
+
 })
