@@ -17,7 +17,7 @@ describe('insert reducer', () => {
     it('ads to inventory when not empty', () => {
         const expectedObject1 = {id: Math.random()}
         const expectedObject2 = {id: Math.random()}
-        expect(inventory.content(List([expectedObject1]),{type: types.ADD_TO_INVENTORY, payload: expectedObject2})).toEqual(List([expectedObject1, expectedObject2]))
+        expect(inventory.content(List([expectedObject1]),{type: types.ADD_TO_INVENTORY, payload: expectedObject2})).toEqualImmutable(List([expectedObject1, expectedObject2]))
     })
 })
 
@@ -28,8 +28,9 @@ describe('use reducer', () => {
 
     it('removes from inventory when it exists', () => {
         const id = Math.random()
-        const expectedObject = {id: id}
-        expect(inventory.content(List([expectedObject]),{type: types.USE_FROM_INVENTORY, payload: id})).toEqualImmutable(List())
+        const expectedObjectUsed = {id: id}
+        const expectedObjectLeft = {id: Math.random()}
+        expect(inventory.content(List([expectedObjectUsed, expectedObjectLeft]),{type: types.USE_FROM_INVENTORY, payload: id})).toEqualImmutable(List([expectedObjectLeft]))
     })
 })
 
