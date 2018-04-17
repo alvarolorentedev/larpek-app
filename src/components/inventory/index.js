@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import {v1 as uuid } from 'uuid'
 
-import { View, Container, Fab, Icon, Button, List, ListItem, Text, Body, Right } from 'native-base'
+import { Content, Container, Fab, Icon, Button, List, ListItem, Text, Body, Right } from 'native-base'
 
 import Menu from '../common/menu'
 import header from '../common/header'
@@ -23,7 +23,7 @@ export class Inventory extends Component {
         return (
             <Container style={{ backgroundColor: 'white' }}> 
                 {header("Larpek")}
-                <View>
+                <Content>
                 <List id='inventoryList'>
                 {
                     this.props.Inventory.map((element, index) => 
@@ -37,7 +37,7 @@ export class Inventory extends Component {
                 <Button id='addButton' onPress={() => {
                      this.props.addToInventory({id : uuid()})
                 }}><Text>Add</Text></Button>
-                </View>
+                </Content>
                 <Menu/>
             </Container>
         )
