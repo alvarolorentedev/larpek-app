@@ -10,14 +10,26 @@ describe('insert reducer', () => {
     })
 
     it('ads to inventory when empty', () => {
-        const expectedObject = {someprop: Math.random()}
+        const expectedObject = {id: Math.random()}
         expect(inventory.content(List(),{type: types.ADD_TO_INVENTORY, payload: expectedObject})).toEqualImmutable(List([expectedObject]))
     })
 
     it('ads to inventory when not empty', () => {
-        const expectedObject1 = {someprop: Math.random()}
-        const expectedObject2 = {someprop: Math.random()}
+        const expectedObject1 = {id: Math.random()}
+        const expectedObject2 = {id: Math.random()}
         expect(inventory.content(List([expectedObject1]),{type: types.ADD_TO_INVENTORY, payload: expectedObject2})).toEqual(List([expectedObject1, expectedObject2]))
+    })
+})
+
+describe('use reducer', () => {
+    beforeEach(function () {
+        jest.addMatchers(matchers)
+    })
+
+    it('removes from inventory when it exists', () => {
+        const id = Math.random()
+        const expectedObject = {id: id}
+        expect(inventory.content(List([expectedObject]),{type: types.USE_FROM_INVENTORY, payload: id})).toEqualImmutable(List())
     })
 })
 
