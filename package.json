@@ -4,8 +4,9 @@
   "private": true,
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
-    "start:ios": "react-native run-ios",
-    "start:android": "react-native run-android",
+    "react-native-debugger": "/Applications/'React Native Debugger.app'/Contents/MacOS/'React Native Debugger'",
+    "start:ios": "yarn start & yarn react-native-debugger & react-native run-ios",
+    "start:android": "yarn start & yarn react-native-debugger & react-native run-android",
     "setup": "yarn install && react-native link",
     "test": "jest",
     "test:dev": "jest --watchAll"
